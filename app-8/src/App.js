@@ -1,21 +1,34 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+	constructor() {
+		super();
+		this.state = {
+			data: []
+		};
+	}
+
+	async componentDidMount() {
+		const data = await axios.get(
+			"https://cors-anywhere.herokuapp.com/https://api.sportradar.com/tennis-t2/en/players/rankings.json?api_key=29n49vy68mxscutdge8ykpax"
+		);
+
+		this.setState({
+			data: data.data.rankings[0].player_rankings[0].player
+		});
+	}
+
+	render() {
+		const { name, nationality } = this.state.data;
+		return (
+			<div className='App'>
+				<div>{name}</div>
+				<div>{nationality}</div>
+			</div>
+		);
+	}
 }
 
 export default App;
