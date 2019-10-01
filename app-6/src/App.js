@@ -14,13 +14,14 @@ class App extends Component {
 
 	addTask(task) {
 		const newTasks = [...this.state.tasks, task];
-		this.setState({ tasks: newTasks });
+		this.setState({ tasks: newTasks, task: "" });
 	}
 	render() {
 		return (
 			<div className='App'>
 				<h4>My To-Do List</h4>
 				<input
+					value={this.state.task}
 					placeholder='Enter a task'
 					onChange={e => {
 						this.setState({ task: e.target.value });
