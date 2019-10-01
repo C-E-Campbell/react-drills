@@ -7,7 +7,7 @@ class App extends Component {
 		super();
 		this.filterArray = this.filterArray.bind(this);
 		this.state = {
-			testArray: ["red", "blue", "green"],
+			testArray: ["red", "blue", "green", "purple", "yellow"],
 			filteredArray: []
 		};
 	}
